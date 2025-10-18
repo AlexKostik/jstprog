@@ -1,0 +1,11 @@
+# Игнорируем скрытые файлы macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Кеши и временные файлы
+*.swp
+*~
+._*
+.Spotlight-V100
+.Trashes
