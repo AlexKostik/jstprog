@@ -3,7 +3,7 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++ сборка активного файла",
-            "command": "/usr/bin/g++",
+            "command": "/usr/bin/g++-15",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
