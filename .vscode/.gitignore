@@ -9,3 +9,6 @@
 ._*
 .Spotlight-V100
 .Trashes
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md

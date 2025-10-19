@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <numbers>
 using namespace std;
 
 int main() {
@@ -21,7 +22,7 @@ int main() {
     }
 
     // Переводим угол A в радианы (для функций sin, cos и т.п.)
-    double Arad = A * M_PI / 180.0;
+    double Arad = A * std::numbers::pi / 180.0;
 
     // Формула площади через высоту:
     // S = (h^2) / (2 * sin(A))
