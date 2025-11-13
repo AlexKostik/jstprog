@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() 
+{
+const int A = 16, B = 17, C = 21;
+    for (int a = 0; a < 13; a++) { // ящик по 16кг
+        for (int b = 0; b < 12; b++) { // ящик по 17кг
+            for (int c = 0; c < 10; c++) { // ящик по 21кг
+                int re=A*a+B*b+C*c;
+                if (re == 185) {
+                    cout << a << " по 16кг," << ' ' << b << " по 17кг," << " и " << c << " по 21кг" << " = " << re << endl;
+                }
+            }
+        }
+
+    }
+
+    return 0;
+}
