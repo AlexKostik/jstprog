@@ -1,6 +1,6 @@
 #include <iostream>
-#include <string>
 #include <fstream>
+#include <string>
 using namespace std;
 
 //========== Структура книги ==========
@@ -9,64 +9,65 @@ struct Book {
     string author;
 };
 
-
 int main() {
 
-//============ Открытие файла ============
-    string filename = "library.txt";
-    fstream file(filename);
-    file.open("library.txt", ios::in | ios::out | ios::app);
-    if (!file) {
-        cout << "Ошибка открытия файла " << filename << endl;
-        return 1;
-    }
-
-//========== Чтение книг из файла ========
-    const int MAX_BOOKS = 4;
+//============ Массив книг ============
+    const int MAX_BOOKS = 10;
     Book library[MAX_BOOKS];
-    string line;
-    int count = 0;
+    int bookCount = 0;
 
-    while (getline(file, line) && count < MAX_BOOKS) {
-        size_t delimiterPos = line.find(" - ");
-        if (delimiterPos != string::npos) {
-            library[count].title = line.substr(0, delimiterPos);
-            library[count].author = line.substr(delimiterPos + 3);
-            count++;
-        }
+//======== Чтение книг из файла =======
+    ifstream inputFile("library.txt");
+    if (!inputFile.is_open()) {
+        ofstream createFile("library.txt");
+        createFile.close();
+        ifstream inputFile("library.txt");
     }
 
-// ======= Вывод текущих книг из файла ========
-    while (!file.eof()) {
-        string line;
-        getline(file, line);
-        cout << line << endl;
+//======== Загрузка книг в массив =======
+    while (getline(inputFile, library[bookCount].title, '-') &&
+           getline(inputFile, library[bookCount].author)) {
+        bookCount++;
+        if (bookCount >= MAX_BOOKS) break;
+    }
+    inputFile.close();
+
+//======== Вывод текущих книг ========
+    cout << "Текущий список книг:\n";
+    for (int i = 0; i < bookCount; ++i) {
+        cout << i + 1 << ". " << library[i].title << " - " << library[i].author << endl;
     }
 
-//======== Ввод новой книги в файл ===========
+//======== Ввод новой книги ===========
     string newTitle, newAuthor;
-    file.seekg(0);
-    file << endl << "Введите название новой книги: ";
+    cout << endl << "Введите название новой книги: ";
     getline(cin, newTitle);
-    file << newTitle << endl;
     cout << "Введите автора книги: ";
     getline(cin, newAuthor);
-    file << newAuthor << endl;
     Book newBook = {newTitle, newAuthor};
 
 //======= Сдвиг и добавление =========
-    for (int i = MAX_BOOKS - 1; i > 0; --i) {
+    for (int i = bookCount; i > 0; --i) {
         library[i] = library[i - 1];
     }
     library[0] = newBook;
+    bookCount++;
 
-//======== Вывод всех книг ============
-    cout << "\nТекущий список книг:\n";
-    for (int i = 0; i < MAX_BOOKS; ++i) {
-        if (!library[i].title.empty()) {
-            cout << i + 1 << ". " << library[i].title << " - " << library[i].author << endl;
-        }
+//======== Запись обновленных книг в файл ========
+    ofstream outputFile("library.txt");
+    if (!outputFile.is_open()) {
+        cout << "Не удалось открыть файл для записи." << endl;
+        return 1;
     }
-    file.close();
-    return 0;
+    for (int i = 0; i < bookCount; ++i) {
+        outputFile << library[i].title << " - " << library[i].author << endl;
+    }
+    outputFile.close();
+    cout << "\nКнига сохранена в файл." << endl;
+
+// ======= Вывод всех книг ============
+    cout << "\nТекущий список книг:\n";
+    for (int i = 0; i < bookCount; ++i) {
+        cout << i + 1 << ". " << library[i].title << " - " << library[i].author << endl;
+    }
 }
