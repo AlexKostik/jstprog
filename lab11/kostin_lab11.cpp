@@ -61,9 +61,8 @@ public:
 int main() {
     Car car1("Subaru", "Impreza", 2005);
     car1.showInfo();
-    car1.showModel();
-    car1.setModel("Legacy");
-    car1.showModel();
+    car1.setModel("Outback");
+    car1.showInfo();
 
     cout << endl;
 
