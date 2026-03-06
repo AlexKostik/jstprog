@@ -11,12 +11,12 @@ struct PatientRecord {
     PatientRecord* next;
 
     PatientRecord(string f, int a, string d, string dt) {
-        fullname = f;
-        age = a;
-        doctor = d;
-        date = dt;
-        prev = nullptr;
-        next = nullptr;
+        this->fullname = f;
+        this->age = a;
+        this->doctor = d;
+        this->date = dt;
+        this->prev = nullptr;
+        this->next = nullptr;
     }
 };
 
