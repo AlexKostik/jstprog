@@ -12,3 +12,54 @@
 
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
+.gitignore
+
+# Игнорируем папки и файлы, связанные с IDE и редакторами
+.github/instructions
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Игнорируем папки и файлы, связанные с системами контроля версий
+.git/
+.hg/
+.svn/   
+
+# Игнорируем папки и файлы, связанные с операционными системами
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Игнорируем папки и файлы, связанные с языками программирования и фреймворками
+node_modules/
+dist/
+build/
+*.log
+*.tmp
+*.bak
+*.cache
+*.env
+*.env.local
+*.env.development
+*.env.test
+*.env.production
+*.pyc
+__pycache__/
+*.class
+*.jar
+*.war
+*.ear
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.a
+*.obj
+*.out
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.iso
